@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore Waibhav Mehta's projects - from AI agents and cybersecurity demos to IoT systems and 3D editors.">
+    <meta name="keywords" content="Waibhav Mehta, Projects, Portfolio, AI, Cybersecurity, IoT, Arduino, Web Development">
+    <meta name="author" content="Waibhav Mehta">
+    <meta property="og:title" content="Projects - Waibhav Mehta">
+    <meta property="og:description" content="Explore my portfolio of projects in web development, cybersecurity, IoT, and AI.">
+    <meta property="og:type" content="website">
+    <title>Projects | Waibhav Mehta</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-text">WM</span>
+            </a>
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                <span class="hamburger"></span>
+            </button>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="about.html" class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="projects.html" class="nav-link active">Projects</a>
+                </li>
+                <li class="nav-item">
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero projects-hero">
+        <div class="hero-content centered">
+            <h1 class="hero-title">
+                My <span class="highlight">Projects</span>
+            </h1>
+            <p class="hero-subtitle">A collection of things I've built</p>
+            <p class="hero-description" style="max-width: 600px; margin: 0 auto;">
+                Here you'll find a showcase of my work across web development, cybersecurity, IoT, and AI.
+                Each project represents a learning journey and a step forward in my technical skills.
+            </p>
+        </div>
+    </section>
+
+    <!-- Projects Grid -->
+    <section class="projects-section">
+        <!-- Project 1: WhatsApp AI Agent System -->
+        <div class="project-detail-card glass-card" id="wifi-agent">
+            <div class="project-detail-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                <img src="images/Whatsapp AI agent.png" alt="" class="project-bg-img">
+                <i class="fas fa-robot project-icon"></i>
+            </div>
+            <div class="project-detail-content">
+                <h2>WhatsApp AI Agent System</h2>
+                <div class="project-meta">
+                    <span class="project-category">AI / Backend</span>
+                </div>
+                <p>
+                    A dual-mode AI agent integrated with WhatsApp that can switch between different operational modes.
+                    The system uses Ollama for local LLM processing and Node.js as the backend controller,
+                    enabling private and efficient AI conversations directly through WhatsApp.
+                </p>
+                <div class="project-tech">
+                    <span class="tech-tag">Node.js</span>
+                    <span class="tech-tag">Ollama</span>
+                    <span class="tech-tag">WhatsApp API</span>
+                    <span class="tech-tag">LLM</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://github.com/Wearing-wind" target="_blank" rel="noopener" class="btn btn-outline">
+                        <i class="fab fa-github"></i> View Code
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 2: Evil Twin Attack -->
+        <div class="project-detail-card glass-card" id="evil-twin">
+            <div class="project-detail-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                <img src="images/Evil Twin.png" alt="" class="project-bg-img">
+                <i class="fas fa-wifi project-icon"></i>
+            </div>
+            <div class="project-detail-content">
+                <h2>Evil Twin Attack Demonstration</h2>
+                <div class="project-meta">
+                    <span class="project-category">Cybersecurity</span>
+                </div>
+                <p>
+                    A cybersecurity project demonstrating a fake WiFi access point attack using captive portal
+                    phishing techniques. This project is designed for educational purposes and real-world
+                    practical demonstration, showing how attackers can create malicious access points to
+                    capture user credentials.
+                </p>
+                <div class="project-tech">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">WiFi Security</span>
+                    <span class="tech-tag">Captive Portal</span>
+                    <span class="tech-tag">Kali Linux</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://github.com/Wearing-wind" target="_blank" rel="noopener" class="btn btn-outline">
+                        <i class="fab fa-github"></i> View Code
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 3: Gesture-Controlled 3D Voxel Editor -->
+        <div class="project-detail-card glass-card" id="gesture-editor">
+            <div class="project-detail-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                <img src="images/Py Voxel editor.png" alt="" class="project-bg-img">
+                <i class="fas fa-cube project-icon"></i>
+            </div>
+            <div class="project-detail-content">
+                <h2>Gesture-Controlled 3D Voxel Editor</h2>
+                <div class="project-meta">
+                    <span class="project-category">Computer Vision / AI</span>
+                </div>
+                <p>
+                    An innovative 3D voxel editor that can be controlled entirely through hand gestures.
+                    Built using computer vision for real-time gesture detection, this project combines
+                    creativity with cutting-edge technology to create a unique user experience.
+                </p>
+                <div class="project-tech">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">OpenCV</span>
+                    <span class="tech-tag">MediaPipe</span>
+                    <span class="tech-tag">3D Graphics</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://github.com/Wearing-wind" target="_blank" rel="noopener" class="btn btn-outline">
+                        <i class="fab fa-github"></i> View Code
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 4: IoT Smart Security System -->
+        <div class="project-detail-card glass-card" id="iot-security">
+            <div class="project-detail-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                <img src="images/smart door.png" alt="" class="project-bg-img">
+                <i class="fas fa-fingerprint project-icon"></i>
+            </div>
+            <div class="project-detail-content">
+                <h2>IoT Smart Door Security System</h2>
+                <div class="project-meta">
+                    <span class="project-category">IoT / Security</span>
+                </div>
+                <p>
+                    An IoT-enabled multi-factor authentication door security system that uses face recognition and
+                    fingerprint verification for access control. Access is only granted when both biometrics match
+                    the same enrolled user. Includes a real-time GUI, an admin web dashboard for user management and
+                    access logs, and auto-lock functionality — built for 24/7 continuous operation.
+                </p>
+                <div class="project-tech">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Flask</span>
+                    <span class="tech-tag">Face Recognition</span>
+                    <span class="tech-tag">OpenCV</span>
+                    <span class="tech-tag">Raspberry Pi</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://github.com/Wearing-wind/IoT_Smart_Security_System" target="_blank" rel="noopener" class="btn btn-outline">
+                        <i class="fab fa-github"></i> View Code
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 5: Vortex Animation -->
+        <div class="project-detail-card glass-card" id="vortex">
+            <div class="project-detail-image" style="background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);">
+                <img src="images/Waibhav.png" alt="" class="project-bg-img">
+                <i class="fas fa-atom project-icon"></i>
+            </div>
+            <div class="project-detail-content">
+                <h2>Vortex Animation</h2>
+                <div class="project-meta">
+                    <span class="project-category">Web Animation / Creative</span>
+                </div>
+                <p>
+                    A visually engaging vortex animation built entirely with vanilla HTML, CSS, and JavaScript.
+                    The project showcases creative use of canvas-based animations and CSS transforms to create
+                    an immersive, fluid visual effect — demonstrating strong front-end technique beyond standard
+                    site layouts.
+                </p>
+                <div class="project-tech">
+                    <span class="tech-tag">HTML5</span>
+                    <span class="tech-tag">CSS3</span>
+                    <span class="tech-tag">JavaScript</span>
+                    <span class="tech-tag">Canvas</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://github.com/Wearing-wind/Vortex-Animation" target="_blank" rel="noopener" class="btn btn-outline">
+                        <i class="fab fa-github"></i> View Code
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 6: Saptakoshi Consultancy -->
+        <div class="project-detail-card glass-card" id="saptakoshi">
+            <div class="project-detail-image" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                <img src="images/Saptakoshi.png" alt="" class="project-bg-img">
+                <i class="fas fa-building project-icon"></i>
+            </div>
+            <div class="project-detail-content">
+                <h2>Saptakoshi Consultancy</h2>
+                <div class="project-meta">
+                    <span class="project-category">Web Development</span>
+                </div>
+                <p>
+                    A fully built, multi-page static website created for Saptakoshi Consultancy. The site
+                    includes dedicated pages for Home, About, Projects, and Contact, built with clean HTML
+                    and CSS while keeping a professional, responsive layout suitable for a real business
+                    identity.
+                </p>
+                <div class="project-tech">
+                    <span class="tech-tag">HTML5</span>
+                    <span class="tech-tag">CSS3</span>
+                    <span class="tech-tag">JavaScript</span>
+                    <span class="tech-tag">Responsive Design</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://github.com/Wearing-wind/Saptakoshi-consultancy" target="_blank" rel="noopener" class="btn btn-outline">
+                        <i class="fab fa-github"></i> View Code
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 7: Sovryx Tech -->
+        <div class="project-detail-card glass-card" id="sovryx-tech">
+            <div class="project-detail-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                <img src="images/Sovryx.png" alt="" class="project-bg-img">
+                <i class="fas fa-code project-icon"></i>
+            </div>
+            <div class="project-detail-content">
+                <h2>Sovryx Tech Website</h2>
+                <div class="project-meta">
+                    <span class="project-category">Web Development</span>
+                </div>
+                <p>
+                    The official web presence for Sovryx Tech Pvt. Ltd., featuring course listings, a
+                    registration portal, and a verification system with secure token-based access control
+                    flows. Built with HTML, CSS, and JavaScript to deliver a clean, professional interface
+                    for students and clients.
+                </p>
+                <div class="project-tech">
+                    <span class="tech-tag">HTML5</span>
+                    <span class="tech-tag">CSS3</span>
+                    <span class="tech-tag">JavaScript</span>
+                    <span class="tech-tag">Token Auth</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://github.com/Wearing-wind/Sovryx-Tech" target="_blank" rel="noopener" class="btn btn-outline">
+                        <i class="fab fa-github"></i> View Code
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 8: PHP Academic Collection -->
+        <div class="project-detail-card glass-card" id="php-collection">
+            <div class="project-detail-image" style="background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%);">
+                <img src="images/php.png" alt="" class="project-bg-img">
+                <i class="fas fa-server project-icon"></i>
+            </div>
+            <div class="project-detail-content">
+                <h2>PHP Academic Projects</h2>
+                <div class="project-meta">
+                    <span class="project-category">Backend / Web Development</span>
+                </div>
+                <p>
+                    A curated collection of PHP-based academic projects developed as part of the MMP-2081
+                    curriculum at Manmohan Memorial Polytechnic. These assignments cover core PHP concepts
+                    and server-side web development fundamentals.
+                </p>
+                <div class="project-tech">
+                    <span class="tech-tag">PHP</span>
+                    <span class="tech-tag">MySQL</span>
+                    <span class="tech-tag">HTML</span>
+                    <span class="tech-tag">CSS</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://github.com/Wearing-wind/PHP" target="_blank" rel="noopener" class="btn btn-outline">
+                        <i class="fab fa-github"></i> View Code
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- More Projects CTA -->
+    <section class="more-projects">
+        <div class="more-content glass-card">
+            <h2>Want to see more?</h2>
+            <p>Check out my GitHub for additional projects and contributions.</p>
+            <a href="https://github.com/Wearing-wind" target="_blank" rel="noopener" class="btn btn-primary">
+                <i class="fab fa-github"></i> Visit GitHub
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                <h3>Waibhav Mehta</h3>
+                <p>Developer & Tech Enthusiast</p>
+                <div class="footer-contact">
+                    <p><i class="fas fa-envelope"></i> waibhavm@gmail.com</p>
+                    <p><i class="fab fa-whatsapp"></i> +977 9768811191</p>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h4>Connect With Me</h4>
+                <div class="social-icons">
+                    <a href="https://github.com/Wearing-wind" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+                    <a href="https://www.instagram.com/waibhav_mehta/" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/Waibhav.mehta.35" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Waibhav Mehta. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

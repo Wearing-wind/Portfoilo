@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Get in touch with Waibhav Mehta. Contact for projects, collaborations, or just to say hello.">
+    <meta name="keywords" content="Waibhav Mehta, Contact, Email, WhatsApp, Portfolio">
+    <meta name="author" content="Waibhav Mehta">
+    <meta property="og:title" content="Contact - Waibhav Mehta">
+    <meta property="og:description" content="Get in touch with me for projects, collaborations, or inquiries.">
+    <meta property="og:type" content="website">
+    <title>Contact Me | Waibhav Mehta</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-text">WM</span>
+            </a>
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                <span class="hamburger"></span>
+            </button>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="about.html" class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="projects.html" class="nav-link">Projects</a>
+                </li>
+                <li class="nav-item">
+                    <a href="contact.html" class="nav-link active">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero contact-hero">
+        <div class="hero-content centered">
+            <h1 class="hero-title">
+                Get In <span class="highlight">Touch</span>
+            </h1>
+            <p class="hero-subtitle">Let's connect</p>
+            <p class="hero-description" style="max-width: 600px; margin: 0 auto;">
+                Have a question, project idea, or just want to say hi? I'd love to hear from you. 
+                Fill out the form below or reach out through my social channels.
+            </p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="contact-container">
+            <!-- Contact Info -->
+            <div class="contact-info">
+                <h2>Let's Talk</h2>
+                <p>I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.</p>
+                
+                <div class="contact-details">
+                    <div class="contact-item glass-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h3>Email</h3>
+                            <a href="mailto:waibhavm@gmail.com">waibhavm@gmail.com</a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item glass-card">
+                        <div class="contact-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h3>WhatsApp</h3>
+                            <a href="https://wa.me/9779768811191" target="_blank" rel="noopener">+977 9768811191</a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item glass-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h3>Location</h3>
+                            <span>Inurawa, Sunsari, Nepal</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="social-contact">
+                    <h3>Connect on Social Media</h3>
+                    <div class="social-buttons">
+                        <a href="https://github.com/Wearing-wind" target="_blank" rel="noopener" class="social-btn glass-card">
+                            <i class="fab fa-github"></i>
+                            <span>GitHub</span>
+                        </a>
+                        <a href="https://www.instagram.com/waibhav_mehta/" target="_blank" rel="noopener" class="social-btn glass-card">
+                            <i class="fab fa-instagram"></i>
+                            <span>Instagram</span>
+                        </a>
+                        <a href="https://www.facebook.com/Waibhav.mehta.35" target="_blank" rel="noopener" class="social-btn glass-card">
+                            <i class="fab fa-facebook-f"></i>
+                            <span>Facebook</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="contact-form-wrapper">
+                <form id="contact-form" class="contact-form glass-card">
+                    <h2>Send a Message</h2>
+                    
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" required placeholder="John Doe">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Your Email</label>
+                        <input type="email" id="email" name="email" required placeholder="john@example.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" required placeholder="Project Inquiry">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="6" required placeholder="Tell me about your project or idea..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-submit">
+                        <span>Send Message</span>
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resume Download Section -->
+    <section class="resume-section">
+        <div class="resume-content glass-card">
+            <div class="resume-icon">
+                <i class="fas fa-file-download"></i>
+            </div>
+            <div class="resume-text">
+                <h2>Download My Resume</h2>
+                <p>Want to know more about my experience and skills? Download my detailed resume.</p>
+            </div>
+            <a href="#" class="btn btn-primary" id="resume-download">
+                <i class="fas fa-download"></i>
+                <span>Download CV</span>
+            </a>
+        </div>
+        <p class="resume-note">Resume file will be available soon. Check back later!</p>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <h2 class="section-title">Common Questions</h2>
+        <div class="faq-container">
+            <div class="faq-item glass-card">
+                <div class="faq-question">
+                    <h3>Are you available for freelance work?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, I'm open to freelance projects, especially in web development, IoT, and cybersecurity. Feel free to reach out with your project details.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item glass-card">
+                <div class="faq-question">
+                    <h3>What's your response time?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>I typically respond within 24-48 hours. For urgent matters, you can reach me on WhatsApp.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item glass-card">
+                <div class="faq-question">
+                    <h3>Are you looking for internships or jobs?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, I'm actively looking for opportunities in web development and cybersecurity. If you have any openings, I'd love to hear about them.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item glass-card">
+                <div class="faq-question">
+                    <h3>Can you collaborate on open-source projects?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Absolutely! I'm passionate about open-source and would love to collaborate. Check out my GitHub and let's connect.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                <h3>Waibhav Mehta</h3>
+                <p>Developer & Tech Enthusiast</p>
+                <div class="footer-contact">
+                    <p><i class="fas fa-envelope"></i> waibhavm@gmail.com</p>
+                    <p><i class="fab fa-whatsapp"></i> +977 9768811191</p>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h4>Connect With Me</h4>
+                <div class="social-icons">
+                    <a href="https://github.com/Wearing-wind" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+                    <a href="https://www.instagram.com/waibhav_mehta/" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/Waibhav.mehta.35" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Waibhav Mehta. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

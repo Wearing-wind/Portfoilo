@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Waibhav Mehta - IT Student, Web Developer & Cybersecurity Enthusiast from Nepal. Specializing in web development, IoT, and embedded systems.">
+    <meta name="keywords" content="Waibhav Mehta, Portfolio, Web Developer, Cybersecurity, IoT, Nepal, IT Student, CTEVT">
+    <meta name="author" content="Waibhav Mehta">
+    <meta property="og:title" content="Waibhav Mehta - Portfolio">
+    <meta property="og:description" content="IT Student passionate about web development, cybersecurity, and IoT systems.">
+    <meta property="og:type" content="website">
+    <title>Waibhav Mehta | Developer & Tech Enthusiast</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-text">WM</span>
+            </a>
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                <span class="hamburger"></span>
+            </button>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link active">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="about.html" class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="projects.html" class="nav-link">Projects</a>
+                </li>
+                <li class="nav-item">
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    Hi, I'm <span class="highlight">Waibhav</span>
+                </h1>
+                <p class="hero-subtitle">Developer & Tech Enthusiast</p>
+                <p class="hero-description">
+                    An IT student from Inurawa, Nepal passionate about building things that are both functional and well-designed. 
+                    I specialize in web development and cybersecurity.
+                </p>
+                <div class="hero-location">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Inurawa, Sunsari, Nepal</span>
+                </div>
+                <div class="hero-buttons">
+                    <a href="projects.html" class="btn btn-primary">View My Work</a>
+                    <a href="contact.html" class="btn btn-secondary">Get In Touch</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="profile-frame">
+                    <div class="profile-img">
+                        <!-- Replace with your actual photo -->
+                        <img src="images/Waibhav.png" alt="Waibhav Mehta">
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Social Links -->
+        <div class="social-links">
+            <a href="https://github.com/Wearing-wind" target="_blank" rel="noopener" class="social-link" aria-label="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="https://www.instagram.com/waibhav_mehta/" target="_blank" rel="noopener" class="social-link" aria-label="Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.facebook.com/Waibhav.mehta.35" target="_blank" rel="noopener" class="social-link" aria-label="Facebook">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Skills Preview Section -->
+    <section class="skills-preview">
+        <h2 class="section-title">What I Do</h2>
+        <div class="skills-grid">
+            <div class="skill-card glass-card">
+                <div class="skill-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <h3>Web Development</h3>
+                <p>Building responsive and modern websites using HTML, CSS, JavaScript and modern frameworks</p>
+            </div>
+            <div class="skill-card glass-card">
+                <div class="skill-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Cybersecurity</h3>
+                <p>Exploring security vulnerabilities and implementing protective measures</p>
+            </div>
+            <div class="skill-card glass-card">
+                <div class="skill-icon">
+                    <i class="fas fa-microchip"></i>
+                </div>
+                <h3>IoT & Embedded</h3>
+                <p>Working with Arduino, sensors, and creating smart automated systems</p>
+            </div>
+            <div class="skill-card glass-card">
+                <div class="skill-icon">
+                    <i class="fas fa-paint-brush"></i>
+                </div>
+                <h3>UI/UX Design</h3>
+                <p>Creating intuitive and aesthetically pleasing user interfaces</p>
+            </div>
+        </div>
+    </section>
+
+        <!-- Featured Projects Preview -->
+        <section class="projects-preview">
+            <h2 class="section-title">Featured Projects</h2>
+
+            <div class="marquee-stage">
+                <div class="marquee-fade marquee-fade-left"></div>
+                <div class="marquee-fade marquee-fade-right"></div>
+
+                <div class="marquee-track" id="marqueeTrack">
+                    <div class="marquee-slide">
+                        <!-- Card 1 -->
+                        <div class="project-card glass-card">
+                            <div class="project-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <div class="project-info">
+                                <h3>WhatsApp AI Agent System</h3>
+                                <p>Dual-mode AI agent integrated with WhatsApp using local LLM</p>
+                            </div>
+                        </div>
+                        <!-- Card 2 -->
+                        <div class="project-card glass-card">
+                            <div class="project-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                                <i class="fas fa-wifi"></i>
+                            </div>
+                            <div class="project-info">
+                                <h3>Evil Twin Attack</h3>
+                                <p>Cybersecurity demo of fake WiFi access point attack using captive portal</p>
+                            </div>
+                        </div>
+                        <!-- Card 3 -->
+                        <div class="project-card glass-card">
+                            <div class="project-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                                <i class="fas fa-fingerprint"></i>
+                            </div>
+                            <div class="project-info">
+                                <h3>Smart Door Security System</h3>
+                                <p>IoT multi-factor authentication door lock with face recognition and fingerprint verification</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Duplicate set for seamless loop -->
+                    <div class="marquee-slide" aria-hidden="true">
+                        <div class="project-card glass-card">
+                            <div class="project-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <div class="project-info">
+                                <h3>WhatsApp AI Agent System</h3>
+                                <p>Dual-mode AI agent integrated with WhatsApp using local LLM</p>
+                            </div>
+                        </div>
+                        <div class="project-card glass-card">
+                            <div class="project-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                                <i class="fas fa-wifi"></i>
+                            </div>
+                            <div class="project-info">
+                                <h3>Evil Twin Attack</h3>
+                                <p>Cybersecurity demo of fake WiFi access point attack using captive portal</p>
+                            </div>
+                        </div>
+                        <div class="project-card glass-card">
+                            <div class="project-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                                <i class="fas fa-fingerprint"></i>
+                            </div>
+                            <div class="project-info">
+                                <h3>Smart Door Security System</h3>
+                                <p>IoT multi-factor authentication door lock with face recognition and fingerprint verification</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="marquee-dots" id="marqueeDots">
+                <button class="marquee-dot active" data-index="0" aria-label="Show all projects"></button>
+            </div>
+
+            <div class="view-all">
+                <a href="projects.html" class="btn btn-outline">View All Projects</a>
+            </div>
+        </section>
+
+    <!-- Experience Section -->
+    <section class="experience-section">
+        <h2 class="section-title">Experience</h2>
+        <div class="experience-timeline">
+            <div class="timeline-item glass-card">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <span class="timeline-date">April 2026 – Present</span>
+                    <h3>IoT Executive</h3>
+                    <h4>Sovryx Tech Pvt. Ltd.</h4>
+                    <p>Delivering weekly IoT training to school students in partnership with ASRO. Involved in internal IoT R&D and client projects.</p>
+                </div>
+            </div>
+            <div class="timeline-item glass-card">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <span class="timeline-date">Ongoing</span>
+                    <h3>Personal Projects</h3>
+                    <h4>Self-initiated</h4>
+                    <p>Hands-on experience through projects in web development, cybersecurity, embedded systems, and AI.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="education-section">
+        <h2 class="section-title">Education</h2>
+        <div class="education-card glass-card">
+            <div class="education-icon">
+                <i class="fas fa-graduation-cap"></i>
+            </div>
+            <div class="education-content">
+                <h3>Diploma in Information Technology</h3>
+                <h4><a href="https://mmp.edu.np/" target="_blank" rel="noopener">Manmohan Memorial Polytechnic</a></h4>
+                <p>CTEVT (Council for Technical Education and Vocational Training)</p>
+                <p class="education-status">4th Semester - Currently Studying</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                <h3>Waibhav Mehta</h3>
+                <p>Developer & Tech Enthusiast</p>
+                <div class="footer-contact">
+                    <p><i class="fas fa-envelope"></i> waibhavm@gmail.com</p>
+                    <p><i class="fab fa-whatsapp"></i> +977 9768811191</p>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h4>Connect With Me</h4>
+                <div class="social-icons">
+                    <a href="https://github.com/Wearing-wind" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+                    <a href="https://www.instagram.com/waibhav_mehta/" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/Waibhav.mehta.35" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Waibhav Mehta. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
