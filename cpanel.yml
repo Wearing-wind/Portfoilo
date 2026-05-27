@@ -1,0 +1,50 @@
+# cPanel Application Manager Deployment Configuration
+# Generated for automated deployment of a standard web application
+
+deployment:
+  application:
+    name: "My Web Application"
+    description: "Standard web application deployed via cPanel Application Manager"
+  
+  source:
+    type: "git"
+    repository: "https://github.com/username/repository.git"
+    branch: "main"
+  
+  target:
+    application_root: "/home/username/applications/myapp"
+    application_url: "https://example.com/myapp"
+    public_directory: "public"
+    
+  runtime:
+    language: "node"
+    version: "18"
+    
+  startup:
+    command: "npm start"
+    startup_file: "app.js"
+    port: 3000
+    timeout: 300
+    
+  environment:
+    NODE_ENV: "production"
+    PORT: "3000"
+    APP_ENV: "production"
+    
+  deployment_hooks:
+    pre_deploy: "npm ci"
+    post_deploy: "npm run build"
+    
+  logging:
+    log_directory: "/home/username/applications/myapp/logs"
+    log_level: "info"
+    
+  health_check:
+    endpoint: "/health"
+    interval: 60
+    timeout: 10
+    
+  notifications:
+    email: "admin@example.com"
+    on_failure: true
+    on_success: false
