@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="theme-color" content="#0a0a0f">
     <meta name="description" content="Waibhav Mehta - IT Student, Web Developer & Cybersecurity Enthusiast from Nepal. Specializing in web development, IoT, and embedded systems.">
     <meta name="keywords" content="Waibhav Mehta, Portfolio, Web Developer, Cybersecurity, IoT, Nepal, IT Student, CTEVT">
     <meta name="author" content="Waibhav Mehta">
@@ -24,27 +25,43 @@
         <div class="blob blob-3"></div>
     </div>
 
+    <!-- Mobile Floating Avatar Button -->
+    <div class="mobile-floating-header">
+        <a href="index.html" class="mobile-logo" aria-label="Home">
+            <img src="images/Waibhav.png" alt="Waibhav Mehta" class="logo-avatar">
+        </a>
+    </div>
+
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <a href="index.html" class="nav-logo">
-                <span class="logo-text">WM</span>
+            <a href="index.html" class="nav-logo desktop-only" aria-label="Waibhav Mehta">
+                <img src="images/Waibhav.png" alt="Waibhav Mehta" class="logo-avatar">
             </a>
-            <button class="nav-toggle" aria-label="Toggle navigation">
-                <span class="hamburger"></span>
-            </button>
             <ul class="nav-menu">
                 <li class="nav-item">
-                    <a href="index.html" class="nav-link active">Home</a>
+                    <a href="index.html" class="nav-link active">
+                        <i class="fas fa-house nav-icon"></i>
+                        <span class="nav-text">Home</span>
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a href="about.html" class="nav-link">About</a>
+                    <a href="about.html" class="nav-link">
+                        <i class="fas fa-user nav-icon"></i>
+                        <span class="nav-text">About</span>
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a href="projects.html" class="nav-link">Projects</a>
+                    <a href="projects.html" class="nav-link">
+                        <i class="fas fa-laptop-code nav-icon"></i>
+                        <span class="nav-text">Projects</span>
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a href="contact.html" class="nav-link">Contact</a>
+                    <a href="contact.html" class="nav-link">
+                        <i class="fas fa-paper-plane nav-icon"></i>
+                        <span class="nav-text">Contact</span>
+                    </a>
                 </li>
             </ul>
         </div>

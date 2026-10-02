@@ -4,35 +4,65 @@ const navToggle = document.querySelector('.nav-toggle');
 const navMenu = document.querySelector('.nav-menu');
 const navLinks = document.querySelectorAll('.nav-link');
 
-// ===== Mobile Navigation Toggle =====
-navToggle.addEventListener('click', () => {
-    navToggle.classList.toggle('active');
-    navMenu.classList.toggle('active');
-});
+// ===== Mobile Layout Check =====
+function isMobileLayout() {
+    return window.innerWidth <= 768 || window.matchMedia('(max-width: 768px)').matches;
+}
+
+// ===== Mobile Navigation Toggle (for desktop fallback if needed) =====
+if (navToggle) {
+    navToggle.addEventListener('click', () => {
+        navToggle.classList.toggle('active');
+        if (navMenu) navMenu.classList.toggle('active');
+    });
+}
 
 // Close mobile menu when clicking a link
 navLinks.forEach(link => {
     link.addEventListener('click', () => {
-        navToggle.classList.remove('active');
-        navMenu.classList.remove('active');
+        if (navToggle) navToggle.classList.remove('active');
+        if (navMenu) navMenu.classList.remove('active');
     });
 });
 
-// ===== Navbar Scroll Effect (Auto-hide/show) =====
+// ===== Navbar Scroll & Mobile App Dock Interaction =====
 let lastScroll = 0;
 let isNavbarVisible = true;
 let navbarTimeout = null;
 let isHoveringNearTop = false;
+let mobileInteractionTimeout = null;
 
-// Show navbar when mouse is near the top of the page
+// Show desktop navbar
+function showNavbar() {
+    if (isMobileLayout()) return;
+    if (!isNavbarVisible) {
+        isNavbarVisible = true;
+        navbar.style.transform = 'translateX(-50%) translateY(0)';
+        navbar.style.opacity = '1';
+        navbar.style.transition = 'transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s ease';
+    }
+}
+
+// Hide desktop navbar
+function hideNavbar() {
+    if (isMobileLayout()) return;
+    if (isNavbarVisible && !isHoveringNearTop) {
+        isNavbarVisible = false;
+        navbar.style.transform = 'translateX(-50%) translateY(-150%)';
+        navbar.style.opacity = '0';
+        navbar.style.transition = 'transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55), opacity 0.3s ease';
+    }
+}
+
+// Show navbar when mouse is near the top of the page (Desktop only)
 document.addEventListener('mousemove', (e) => {
+    if (isMobileLayout()) return;
     if (e.clientY < 120) {
         if (!isHoveringNearTop && !isNavbarVisible) {
             showNavbar();
         }
         isHoveringNearTop = true;
 
-        // Clear timeout when hovering near top
         if (navbarTimeout) {
             clearTimeout(navbarTimeout);
             navbarTimeout = null;
@@ -42,28 +72,32 @@ document.addEventListener('mousemove', (e) => {
     }
 });
 
-function showNavbar() {
-    if (!isNavbarVisible) {
-        isNavbarVisible = true;
-        navbar.style.transform = 'translateX(-50%) translateY(0)';
-        navbar.style.opacity = '1';
-        navbar.style.transition = 'transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s ease';
-    }
-}
-
-function hideNavbar() {
-    if (isNavbarVisible && !isHoveringNearTop) {
-        isNavbarVisible = false;
-        navbar.style.transform = 'translateX(-50%) translateY(-150%)';
-        navbar.style.opacity = '0';
-        navbar.style.transition = 'transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55), opacity 0.3s ease';
-    }
-}
-
-window.addEventListener('scroll', () => {
+function handleScrollOrInteraction() {
     const currentScroll = window.pageYOffset;
 
-    // Add/remove navbar background on scroll
+    if (isMobileLayout()) {
+        // Clear any desktop inline transforms
+        navbar.style.transform = '';
+        navbar.style.opacity = '';
+        navbar.style.background = '';
+        navbar.style.boxShadow = '';
+
+        // Mobile App Dock: minimize during scrolling / touch interaction
+        navbar.classList.add('minimized');
+
+        if (mobileInteractionTimeout) clearTimeout(mobileInteractionTimeout);
+        mobileInteractionTimeout = setTimeout(() => {
+            if (window.pageYOffset < 50) {
+                navbar.classList.remove('minimized');
+            }
+        }, 1200);
+
+        return;
+    }
+
+    // DESKTOP SCROLL BEHAVIOR
+    navbar.classList.remove('minimized');
+
     if (currentScroll > 50) {
         navbar.style.background = 'rgba(10, 10, 15, 0.95)';
         navbar.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.3)';
@@ -72,7 +106,6 @@ window.addEventListener('scroll', () => {
         navbar.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 20px rgba(108, 99, 255, 0.1)';
     }
 
-    // Auto-hide navbar when scrolling down, show when scrolling up
     if (currentScroll > 300) {
         if (currentScroll > lastScroll && !isHoveringNearTop) {
             hideNavbar();
@@ -83,7 +116,6 @@ window.addEventListener('scroll', () => {
         showNavbar();
     }
 
-    // Auto-hide navbar after 3 seconds of no interaction when not near top
     if (!isHoveringNearTop && currentScroll > 100) {
         if (navbarTimeout) clearTimeout(navbarTimeout);
         navbarTimeout = setTimeout(() => {
@@ -94,21 +126,38 @@ window.addEventListener('scroll', () => {
     }
 
     lastScroll = currentScroll;
-});
+}
 
-// Always show navbar when hovering over it
-navbar.addEventListener('mouseenter', () => {
-    showNavbar();
-    isHoveringNearTop = true;
-    if (navbarTimeout) {
-        clearTimeout(navbarTimeout);
-        navbarTimeout = null;
-    }
-});
+window.addEventListener('scroll', handleScrollOrInteraction, { passive: true });
+window.addEventListener('touchmove', handleScrollOrInteraction, { passive: true });
 
-navbar.addEventListener('mouseleave', () => {
-    isHoveringNearTop = false;
-});
+// Always expand mobile navbar on direct touch / tap interaction
+if (navbar) {
+    navbar.addEventListener('touchstart', () => {
+        if (isMobileLayout()) {
+            navbar.classList.remove('minimized');
+        }
+    }, { passive: true });
+
+    navbar.addEventListener('mouseenter', () => {
+        if (!isMobileLayout()) {
+            showNavbar();
+            isHoveringNearTop = true;
+            if (navbarTimeout) {
+                clearTimeout(navbarTimeout);
+                navbarTimeout = null;
+            }
+        } else {
+            navbar.classList.remove('minimized');
+        }
+    });
+
+    navbar.addEventListener('mouseleave', () => {
+        if (!isMobileLayout()) {
+            isHoveringNearTop = false;
+        }
+    });
+}
 
 // ===== Scroll Animations =====
 const observerOptions = {
@@ -370,61 +419,84 @@ window.addEventListener('scroll', () => {
     });
 });
 
-// ===== Cursor Trail Effect (Optional - for premium feel) =====
-// Only enable on devices that support hover (not touch devices)
-if (window.matchMedia('(hover: hover)').matches) {
-    const cursor = document.createElement('div');
-    cursor.className = 'cursor-trail';
-    cursor.style.cssText = `
-        position: fixed;
-        width: 20px;
-        height: 20px;
-        border: 2px solid rgba(108, 99, 255, 0.5);
-        border-radius: 50%;
-        pointer-events: none;
-        z-index: 9999;
-        transition: all 0.1s ease;
-        transform: translate(-50%, -50%);
-    `;
-    document.body.appendChild(cursor);
-
-    let mouseX = 0, mouseY = 0;
-    let cursorX = 0, cursorY = 0;
-
-    document.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-    });
-
-    function animateCursor() {
-        const ease = 0.15;
-        cursorX += (mouseX - cursorX) * ease;
-        cursorY += (mouseY - cursorY) * ease;
-
-        cursor.style.left = cursorX + 'px';
-        cursor.style.top = cursorY + 'px';
-
-        requestAnimationFrame(animateCursor);
+// ===== Cursor Trail Effect (Desktop only, strictly disabled on mobile) =====
+function initCursorTrail() {
+    const isTouchOrMobile = isMobileLayout() || ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+    
+    // Remove cursor trail element if on mobile or touch device
+    const existingCursor = document.querySelector('.cursor-trail');
+    if (isTouchOrMobile) {
+        if (existingCursor) existingCursor.remove();
+        return;
     }
 
-    animateCursor();
+    if (!existingCursor && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+        const cursor = document.createElement('div');
+        cursor.className = 'cursor-trail';
+        cursor.style.cssText = `
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(108, 99, 255, 0.5);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transition: width 0.2s ease, height 0.2s ease, background 0.2s ease;
+            transform: translate(-50%, -50%);
+        `;
+        document.body.appendChild(cursor);
 
-    // Enlarge cursor on hover over interactive elements
-    const interactiveElements = document.querySelectorAll('a, button, .glass-card');
-    interactiveElements.forEach(el => {
-        el.addEventListener('mouseenter', () => {
-            cursor.style.width = '40px';
-            cursor.style.height = '40px';
-            cursor.style.background = 'rgba(108, 99, 255, 0.1)';
+        let mouseX = 0, mouseY = 0;
+        let cursorX = 0, cursorY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            if (isMobileLayout()) return;
+            mouseX = e.clientX;
+            mouseY = e.clientY;
         });
 
-        el.addEventListener('mouseleave', () => {
-            cursor.style.width = '20px';
-            cursor.style.height = '20px';
-            cursor.style.background = 'transparent';
+        function animateCursor() {
+            if (isMobileLayout()) {
+                cursor.style.display = 'none';
+                return;
+            }
+            cursor.style.display = 'block';
+            const ease = 0.15;
+            cursorX += (mouseX - cursorX) * ease;
+            cursorY += (mouseY - cursorY) * ease;
+
+            cursor.style.left = cursorX + 'px';
+            cursor.style.top = cursorY + 'px';
+
+            requestAnimationFrame(animateCursor);
+        }
+
+        animateCursor();
+
+        // Enlarge cursor on hover over interactive elements (Desktop only)
+        const interactiveElements = document.querySelectorAll('a, button, .glass-card');
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                if (!isMobileLayout()) {
+                    cursor.style.width = '40px';
+                    cursor.style.height = '40px';
+                    cursor.style.background = 'rgba(108, 99, 255, 0.1)';
+                }
+            });
+
+            el.addEventListener('mouseleave', () => {
+                if (!isMobileLayout()) {
+                    cursor.style.width = '20px';
+                    cursor.style.height = '20px';
+                    cursor.style.background = 'transparent';
+                }
+            });
         });
-    });
+    }
 }
+
+// Initialize cursor trail
+initCursorTrail();
 
 // ===== Page Load Animation =====
 window.addEventListener('load', () => {
@@ -559,6 +631,41 @@ faqItems.forEach(item => {
         track.style.animation = 'none';
     }
 })();
+
+// ===== Mobile Floating Photo Liquid Glass Scroll Morph =====
+function initMobileFloatingPhotoMorph() {
+    const floatingHeader = document.querySelector('.mobile-floating-header');
+    if (!floatingHeader) return;
+
+    const heroImage = document.querySelector('.profile-frame') || document.querySelector('.hero-image');
+
+    function checkVisibility() {
+        if (!isMobileLayout()) return;
+
+        if (heroImage) {
+            const rect = heroImage.getBoundingClientRect();
+            // Morph floating avatar in when hero profile photo scrolls out of view frame
+            if (rect.bottom < 80) {
+                floatingHeader.classList.add('visible');
+            } else {
+                floatingHeader.classList.remove('visible');
+            }
+        } else {
+            // On pages without main hero photo: morph in after 60px scroll
+            if (window.pageYOffset > 60) {
+                floatingHeader.classList.add('visible');
+            } else {
+                floatingHeader.classList.remove('visible');
+            }
+        }
+    }
+
+    window.addEventListener('scroll', checkVisibility, { passive: true });
+    window.addEventListener('resize', checkVisibility, { passive: true });
+    checkVisibility();
+}
+
+initMobileFloatingPhotoMorph();
 
 // ===== Initialize =====
 console.log('Portfolio loaded successfully!');
