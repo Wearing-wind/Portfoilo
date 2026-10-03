@@ -296,7 +296,8 @@ if (contactForm) {
 
         try {
             const formData = new FormData(this);
-            const response = await fetch('https://formspree.io/f/mlgarkqn', {
+            const endpoint = this.getAttribute('action') || 'https://formspree.io/f/xnpneqzj';
+            const response = await fetch(endpoint, {
                 method: 'POST',
                 body: formData,
                 headers: {
@@ -560,77 +561,106 @@ faqItems.forEach(item => {
     });
 });
 
-// ===== Featured Projects Marquee =====
+// ===== Featured Projects Marquee Carousel (Auto-scroll + Touch/Mouse Manual Drag & Swipe) =====
 (function () {
-    const track   = document.getElementById('marqueeTrack');
-    const dotsWrap = document.getElementById('marqueeDots');
-    if (!track || !dotsWrap) return;
+    const stage = document.querySelector('.marquee-stage');
+    const track = document.getElementById('marqueeTrack');
+    if (!stage || !track) return;
 
-    let isDragging  = false;
-    let startX      = 0;
-    let scrollLeft  = 0;
+    let isDragging = false;
+    let startX = 0;
+    let currentTranslate = 0;
+    let prevTranslate = 0;
+    let animationId = 0;
+    let autoScrollSpeed = 0.8;
+    let isPaused = false;
 
-    // --- Navigation dots (pause / resume) ---
-    const dot = document.createElement('button');
-    dot.className = 'marquee-dot active';
-    dot.setAttribute('aria-label', 'Pause or resume marquee');
-    dot.addEventListener('click', () => {
-        const running = track.style.animationPlayState !== 'paused';
-        track.style.animationPlayState = running ? 'paused' : 'running';
-        dot.classList.toggle('active', !running);
-        dot.setAttribute('aria-label', running ? 'Resume marquee' : 'Pause marquee');
-    });
-    dotsWrap.appendChild(dot);
+    function getSlideWidth() {
+        const slide = track.querySelector('.marquee-slide');
+        return slide ? slide.offsetWidth : 1000;
+    }
 
-    // --- Drag / touch swipe to nudge the track ---
-    track.addEventListener('mousedown',  onDragStart);
-    track.addEventListener('touchstart', onDragStart, { passive: true });
+    function setTrackTransform(x) {
+        const slideWidth = getSlideWidth() || 1000;
+        let normalizedX = x % slideWidth;
+        if (normalizedX > 0) normalizedX -= slideWidth;
+        currentTranslate = normalizedX;
+        track.style.transform = `translateX(${normalizedX}px)`;
+    }
 
-    track.addEventListener('mousemove',  onDragMove);
-    track.addEventListener('touchmove',  onDragMove, { passive: true });
+    function autoScrollLoop() {
+        if (!isPaused && !isDragging) {
+            currentTranslate -= autoScrollSpeed;
+            setTrackTransform(currentTranslate);
+        }
+        animationId = requestAnimationFrame(autoScrollLoop);
+    }
 
-    track.addEventListener('mouseup',    onDragEnd);
-    track.addEventListener('mouseleave', onDragEnd);
-    track.addEventListener('touchend',   onDragEnd);
+    // Drive animation with JS loop for zero-jump manual dragging
+    track.style.animation = 'none';
+    animationId = requestAnimationFrame(autoScrollLoop);
+
+    // Mouse & Touch Drag Event Listeners
+    stage.addEventListener('mousedown', onDragStart);
+    stage.addEventListener('touchstart', onDragStart, { passive: true });
+
+    window.addEventListener('mousemove', onDragMove);
+    window.addEventListener('touchmove', onDragMove, { passive: false });
+
+    window.addEventListener('mouseup', onDragEnd);
+    window.addEventListener('touchend', onDragEnd);
+
+    // Pause auto-scroll on hover (desktop)
+    stage.addEventListener('mouseenter', () => { isPaused = true; });
+    stage.addEventListener('mouseleave', () => { if (!isDragging) isPaused = false; });
+
+    function getPositionX(e) {
+        return e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+    }
 
     function onDragStart(e) {
         isDragging = true;
+        isPaused = true;
+        startX = getPositionX(e);
+        prevTranslate = currentTranslate;
         track.classList.add('dragging');
-        const pt = e.touches ? e.touches[0] : e;
-        startX = pt.clientX - track.offsetLeft;
-        scrollLeft = getCurrentTranslateX();
     }
 
     function onDragMove(e) {
         if (!isDragging) return;
-        e.preventDefault();
-        const pt = e.touches ? e.touches[0] : e;
-        const dx = pt.clientX - startX;
-        track.style.transform = `translateX(${scrollLeft + dx}px)`;
+        const currentX = getPositionX(e);
+        const deltaX = currentX - startX;
+        if (e.type.includes('touch') && Math.abs(deltaX) > 5) {
+            e.preventDefault();
+        }
+        setTrackTransform(prevTranslate + deltaX);
     }
 
     function onDragEnd() {
         if (!isDragging) return;
         isDragging = false;
         track.classList.remove('dragging');
-        // Snap back to the CSS animation
-        requestAnimationFrame(() => {
-            track.style.transform = '';
-            track.style.animationPlayState = 'running';
-        });
+        setTimeout(() => {
+            isPaused = false;
+        }, 1000);
     }
 
-    function getCurrentTranslateX() {
-        const style = window.getComputedStyle(track);
-        const matrix = new DOMMatrix(style.transform);
-        return matrix.m41;
-    }
-
-    // --- Respect prefers-reduced-motion ---
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        track.style.animation = 'none';
+    // Navigation Controls (if container exists)
+    const controlsWrap = document.getElementById('marqueeDots');
+    if (controlsWrap) {
+        controlsWrap.style.display = 'none';
     }
 })();
+
+// ===== Private Repository Code Notification Popup Handler =====
+document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.btn-private-code');
+    if (btn) {
+        e.preventDefault();
+        const projectName = btn.getAttribute('data-project') || 'This project';
+        showNotification(`${projectName} repository is private or not publicly available. Feel free to contact me for details or a live demo!`, 'info');
+    }
+});
 
 // ===== Mobile Floating Photo Liquid Glass Scroll Morph =====
 function initMobileFloatingPhotoMorph() {
