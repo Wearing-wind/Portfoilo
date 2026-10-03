@@ -62,9 +62,9 @@ Multi-page static website with professional, responsive layout for business iden
 
 ## 💼 Professional Experience
 
-**IoT Executive** @ Sovryx Tech Pvt. Ltd.  
+**Executive Member** @ Sovryx Tech Pvt. Ltd.  
 *April 2026 – Present*  
-Delivering weekly IoT training to school students in partnership with ASRO. Involved in internal IoT R&D and client projects.
+Involved in internal R&D and client projects.
 
 ## 🎓 Education
 
