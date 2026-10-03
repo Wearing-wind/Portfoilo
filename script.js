@@ -1,4 +1,5 @@
 // ===== DOM Elements =====
+document.body.classList.add('js-loaded');
 const navbar = document.querySelector('.navbar');
 const navToggle = document.querySelector('.nav-toggle');
 const navMenu = document.querySelector('.nav-menu');
@@ -159,32 +160,70 @@ if (navbar) {
     });
 }
 
-// ===== Scroll Animations =====
+// ===== Scroll Animations & Reveal Fail-Safe =====
 const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
+    threshold: 0.01,
+    rootMargin: '100px 0px 100px 0px' // Expands trigger area to avoid threshold clipping
 };
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
+let observer = null;
 
-            // Add staggered animation delay for children
-            const children = entry.target.querySelectorAll('.glass-card, .timeline-item');
-            children.forEach((child, index) => {
-                child.style.animationDelay = `${index * 0.1}s`;
-                child.classList.add('animate-fade-in');
-            });
+if ('IntersectionObserver' in window) {
+    observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+
+                const children = entry.target.querySelectorAll('.glass-card, .timeline-item, .project-detail-card');
+                children.forEach((child, index) => {
+                    child.style.animationDelay = `${index * 0.08}s`;
+                    child.classList.add('animate-fade-in');
+                });
+            }
+        });
+    }, observerOptions);
+}
+
+function initScrollAnimations() {
+    const hasHash = window.location.hash && window.location.hash.length > 1;
+
+    document.querySelectorAll('section').forEach(section => {
+        if (section.classList.contains('hero')) {
+            section.classList.add('visible');
+            return;
+        }
+
+        section.classList.add('scroll-animate');
+
+        if (hasHash || !observer) {
+            section.classList.add('visible');
+        } else {
+            observer.observe(section);
         }
     });
-}, observerOptions);
 
-// Observe sections and cards
-document.querySelectorAll('section').forEach(section => {
-    section.classList.add('scroll-animate');
-    observer.observe(section);
-});
+    document.querySelectorAll('.project-detail-card').forEach(card => {
+        if (hasHash || !observer) {
+            card.classList.add('visible');
+        } else {
+            observer.observe(card);
+        }
+    });
+
+    // Hard fail-safe: Ensure EVERY element becomes 100% visible after 400ms across all browsers
+    setTimeout(() => {
+        document.querySelectorAll('section, .scroll-animate, .project-detail-card').forEach(el => {
+            el.classList.add('visible');
+        });
+    }, 400);
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initScrollAnimations);
+} else {
+    initScrollAnimations();
+}
 
 // ===== Smooth Scroll for Anchor Links =====
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -196,7 +235,12 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         const target = document.querySelector(href);
 
         if (target) {
-            const navbarHeight = navbar.offsetHeight;
+            target.classList.add('visible');
+            const parentSection = target.closest('section');
+            if (parentSection) parentSection.classList.add('visible');
+            document.querySelectorAll('section, .scroll-animate, .project-detail-card').forEach(el => el.classList.add('visible'));
+
+            const navbarHeight = navbar ? navbar.offsetHeight : 0;
             const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
 
             window.scrollTo({

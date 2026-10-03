@@ -1472,13 +1472,26 @@ section {
 /* Scroll animation trigger */
 .scroll-animate {
     opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.6s ease-out;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    will-change: opacity, transform;
 }
 
-.scroll-animate.visible {
-    opacity: 1;
-    transform: translateY(0);
+.scroll-animate.visible,
+.hero,
+body:not(.js-loaded) .scroll-animate,
+body:not(.js-loaded) .project-detail-card {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .scroll-animate,
+    .project-detail-card {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
 }
 
 /* ===== About Page Styles ===== */
