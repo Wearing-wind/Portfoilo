@@ -160,69 +160,18 @@ if (navbar) {
     });
 }
 
-// ===== Scroll Animations & Reveal Fail-Safe =====
-const observerOptions = {
-    threshold: 0.01,
-    rootMargin: '100px 0px 100px 0px' // Expands trigger area to avoid threshold clipping
-};
-
-let observer = null;
-
-if ('IntersectionObserver' in window) {
-    observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
-
-                const children = entry.target.querySelectorAll('.glass-card, .timeline-item, .project-detail-card');
-                children.forEach((child, index) => {
-                    child.style.animationDelay = `${index * 0.08}s`;
-                    child.classList.add('animate-fade-in');
-                });
-            }
-        });
-    }, observerOptions);
-}
-
+// ===== Scroll Animations & Guaranteed Visibility =====
 function initScrollAnimations() {
-    const hasHash = window.location.hash && window.location.hash.length > 1;
-
-    document.querySelectorAll('section').forEach(section => {
-        if (section.classList.contains('hero')) {
-            section.classList.add('visible');
-            return;
-        }
-
-        section.classList.add('scroll-animate');
-
-        if (hasHash || !observer) {
-            section.classList.add('visible');
-        } else {
-            observer.observe(section);
-        }
+    document.querySelectorAll('section, .scroll-animate, .project-detail-card, .glass-card').forEach(el => {
+        el.classList.add('visible');
+        el.style.opacity = '1';
+        el.style.visibility = 'visible';
     });
-
-    document.querySelectorAll('.project-detail-card').forEach(card => {
-        if (hasHash || !observer) {
-            card.classList.add('visible');
-        } else {
-            observer.observe(card);
-        }
-    });
-
-    // Hard fail-safe: Ensure EVERY element becomes 100% visible after 400ms across all browsers
-    setTimeout(() => {
-        document.querySelectorAll('section, .scroll-animate, .project-detail-card').forEach(el => {
-            el.classList.add('visible');
-        });
-    }, 400);
 }
 
+initScrollAnimations();
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initScrollAnimations);
-} else {
-    initScrollAnimations();
 }
 
 // ===== Smooth Scroll for Anchor Links =====
